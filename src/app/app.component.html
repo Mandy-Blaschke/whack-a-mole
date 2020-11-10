@@ -11,6 +11,7 @@
 
   <div *ngFor="let mole of moles" class="moles">
     <div (click)="countScore(mole)" class="mole">
+      <img class="showHill" [class.hiddenHill]="mole.visible && activeGame" src="assets/molehills.png" alt="molehills">
       <img class="mole-img" [class.visible]="mole.visible && activeGame" src="assets/mole.png" alt="mole">
     </div>
   </div>

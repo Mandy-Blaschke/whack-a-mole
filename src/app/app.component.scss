@@ -20,6 +20,19 @@
       border-radius: 60px;
       box-shadow: inset 7px 11px 19px #503333;
 
+      .showHill {
+        position: absolute;
+        bottom: 0;
+        width: 130px;
+        height: 150px;
+        display: block;
+        background-position: center;
+
+        &.hiddenHill {
+          display: none;
+        }
+      }
+
       .mole-img {
         display: none;
 

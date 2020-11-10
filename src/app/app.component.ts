@@ -12,15 +12,9 @@ export class AppComponent implements OnInit {
   playDuration = 90000;
 
   moles: Mole[] = [
-    {visible: false},
-    {visible: false},
-    {visible: false},
-    {visible: false},
-    {visible: false},
-    {visible: false},
-    {visible: false},
-    {visible: false},
-    {visible: false}
+    {visible: false}, {visible: false}, {visible: false},
+    {visible: false}, {visible: false}, {visible: false},
+    {visible: false}, {visible: false}, {visible: false},
   ];
 
   score = 0;
@@ -55,6 +49,7 @@ export class AppComponent implements OnInit {
   }
 
   startGame(): void {
+    this.finishedGame = false;
     this.gameplayTimer();
     this.playingGame();
   }
@@ -88,24 +83,44 @@ export class AppComponent implements OnInit {
   countScore(mole: Mole): void {
     if (this.activeGame && mole.visible && this.firstThird) {
       this.score++;
+      this.playAudioA();
       mole.visible = false;
     } else if (this.activeGame && mole.visible === false && this.firstThird) {
       this.score--;
+      this.playAudioB();
     }
 
     if (this.activeGame && mole.visible && this.secondThird) {
       this.score = this.score + 5;
+      this.playAudioA();
       mole.visible = false;
     } else if (this.activeGame && mole.visible === false && this.secondThird) {
       this.score = this.score - 5;
+      this.playAudioB();
     }
 
     if (this.activeGame && mole.visible && this.lastThird) {
       this.score = this.score + 10;
+      this.playAudioA();
       mole.visible = false;
     } else if (this.activeGame && mole.visible === false && this.lastThird) {
       this.score = this.score - 10;
+      this.playAudioB();
     }
+  }
+
+  playAudioA(): void{
+    const audio = new Audio();
+    audio.src = 'assets/smashing.mp3';
+    audio.load();
+    audio.play();
+  }
+
+  playAudioB(): void{
+    const audio = new Audio();
+    audio.src = 'assets/buzzer.mp3';
+    audio.load();
+    audio.play();
   }
 }
 
