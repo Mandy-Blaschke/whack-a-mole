@@ -85,7 +85,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  scores(mole: Mole): void {
+  countScore(mole: Mole): void {
     if (this.activeGame && mole.visible && this.firstThird) {
       this.score++;
       mole.visible = false;

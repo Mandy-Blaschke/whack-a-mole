@@ -10,7 +10,9 @@
 <div class="game">
 
   <div *ngFor="let mole of moles" class="moles">
-    <div (click)="scores(mole)" class="mole" [class.visible]="mole.visible && activeGame"></div>
+    <div (click)="countScore(mole)" class="mole">
+      <img class="mole-img" [class.visible]="mole.visible && activeGame" src="assets/mole.png" alt="mole">
+    </div>
   </div>
 
 </div>

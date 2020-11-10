@@ -1,20 +1,40 @@
 .game {
-  width: 200px;
-  display: flex;
-  flex-wrap: wrap;
+  border: 5px solid red;
+  padding: 15px;
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto);
+  background-color: #27a827;
+  background-image: url("~src/assets/noisy-texture-300x300-o53-d25-c-27a827-t1.png");
+  justify-content: center;
 
   .moles {
 
     .mole {
-      height: 35px;
-      width: 35px;
-      background-color: blue;
-      margin: 10px;
+      position: relative;
+      height: 70px;
+      width: 130px;
+      background-color: #6E4904;
+      transform: rotateX(62deg);
+      border-radius: 60px;
+      box-shadow: inset 7px 11px 19px #503333;
+
+      .mole-img {
+        display: none;
+
+        &.visible {
+          position: absolute;
+          bottom: 0;
+          width: 130px;
+          height: 150px;
+          display: block;
+          background-position: center;
+        }
+      }
     }
   }
 }
 
 
-.visible {
-  background-color: red !important;
-}
+
