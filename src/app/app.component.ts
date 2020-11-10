@@ -23,7 +23,9 @@ export class AppComponent implements OnInit {
   secondThird = false;
   lastThird = false;
 
+
   ngOnInit(): void {
+    this.preLoadAudios();
   }
 
   private gameplayTimer(): void {
@@ -109,14 +111,25 @@ export class AppComponent implements OnInit {
     }
   }
 
-  playAudioA(): void{
+  preLoadAudios(): void {
+    const audioA = new Audio();
+    audioA.src = 'assets/smashing.mp3';
+    audioA.load();
+
+    const audioB = new Audio();
+    audioB.src = 'assets/buzzer.mp3';
+    audioB.load();
+  }
+
+
+  playAudioA(): void {
     const audio = new Audio();
     audio.src = 'assets/smashing.mp3';
     audio.load();
     audio.play();
   }
 
-  playAudioB(): void{
+  playAudioB(): void {
     const audio = new Audio();
     audio.src = 'assets/buzzer.mp3';
     audio.load();
