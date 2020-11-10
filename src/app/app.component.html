@@ -1,20 +1,20 @@
 
-<button (click)="startGame()" *ngIf="!game">Start</button>
+<button (click)="startGame()" *ngIf="!activeGame">Start</button>
 
-<div *ngIf="game">
+<div *ngIf="activeGame">
   <p>
-    Punkte: {{counter}}
+    Punkte: {{score}}
   </p>
 </div>
 
 <div class="game">
 
   <div *ngFor="let mole of moles" class="moles">
-    <div (click)="scores(mole)" class="mole" [class.visible]="mole.visible && game"></div>
+    <div (click)="scores(mole)" class="mole" [class.visible]="mole.visible && activeGame"></div>
   </div>
 
 </div>
 
-<div *ngIf="gameEnded">
-  <p>Spiel beendet. Deine Punktzahl: {{counter}}</p>
+<div *ngIf="finishedGame">
+  <p>Spiel beendet. Deine Punktzahl: {{score}}</p>
 </div>
