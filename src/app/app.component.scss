@@ -1,53 +1,120 @@
-.game {
-  border: 5px solid red;
-  padding: 15px;
-  display: grid;
-  grid-gap: 25px;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(3, auto);
-  background-color: #27a827;
-  background-image: url("~src/assets/noisy-texture-300x300-o53-d25-c-27a827-t1.png");
-  justify-content: center;
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  .moles {
+  h1 {
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 700;
+    text-shadow: 2px 1px 1px black;
+    color: red;
+  }
 
-    .mole {
-      position: relative;
-      height: 70px;
-      width: 130px;
-      background-color: #6E4904;
-      transform: rotateX(62deg);
-      border-radius: 60px;
-      box-shadow: inset 7px 11px 19px #503333;
+  button {
+    width: 318px;
+    height: 50px;
+    margin: 15px 0 45px 0;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    box-shadow: 3px 3px green;
+    background-color: #e5ee1c;
+    font-family: 'Balsamiq Sans', cursive;
+    font-size: 1.2rem;
 
-      .showHill {
-        position: absolute;
-        bottom: 0;
+    &:active {
+      border: none;
+      box-shadow: inset 3px 3px 1px #bcc310;
+    }
+  }
+
+  p {
+    font-size: 1.5rem;
+    width: 90vw;
+    text-align: center;
+    background-color: red;
+    color: ghostwhite;
+    padding: 10px;
+  }
+
+  .game {
+    border: 5px solid red;
+    padding: 20px;
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    background-color: #27a827;
+    background-image: url("~src/assets/noisy-texture-300x300-o53-d25-c-27a827-t1.png");
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 3px 3px darkred;
+
+    .moles {
+
+      .mole {
+        position: relative;
+        height: 130px;
         width: 130px;
-        height: 150px;
-        display: block;
-        background-position: center;
+        background-color: transparent;
 
-        &.hiddenHill {
-          display: none;
+        @media (max-width: 490px){
+          height: 100px;
+          width: 100px;
         }
-      }
 
-      .mole-img {
-        display: none;
+        @media (max-width: 415px){
+          height: 80px;
+          width: 80px;
+        }
 
-        &.visible {
+        @media (max-width: 325px){
+          height: 70px;
+          width: 70px;
+        }
+
+        img {
+          pointer-events: none;
+          width: 130px;
+
+          @media (max-width: 490px){
+            width: 100px;
+          }
+
+          @media (max-width: 415px){
+            width: 80px;
+          }
+
+          @media (max-width: 325px){
+            width: 70px;
+          }
+        }
+
+        .showHill {
           position: absolute;
           bottom: 0;
-          width: 130px;
-          height: 150px;
+          max-width: 130px;
+          max-height: 150px;
           display: block;
           background-position: center;
+
+          &.hiddenHill {
+            display: none;
+          }
+        }
+
+        .mole-img {
+          display: none;
+
+          &.visible {
+            position: absolute;
+            bottom: 0;
+            display: block;
+            background-position: center;
+          }
         }
       }
     }
   }
 }
-
-
-

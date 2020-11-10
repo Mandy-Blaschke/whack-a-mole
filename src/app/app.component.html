@@ -1,23 +1,26 @@
+<div class="content">
 
-<button (click)="startGame()" *ngIf="!activeGame">Start</button>
+  <h1>WHAK A MOLE</h1>
 
-<div *ngIf="activeGame">
-  <p>
-    Punkte: {{score}}
-  </p>
-</div>
+  <button (click)="startGame()" *ngIf="!activeGame">Start</button>
 
-<div class="game">
-
-  <div *ngFor="let mole of moles" class="moles">
-    <div (click)="countScore(mole)" class="mole">
-      <img class="showHill" [class.hiddenHill]="mole.visible && activeGame" src="assets/molehills.png" alt="molehills">
-      <img class="mole-img" [class.visible]="mole.visible && activeGame" src="assets/mole.png" alt="mole">
-    </div>
+  <div>
+    <p *ngIf="activeGame">
+      Punkte: {{score}}
+    </p>
+    <p *ngIf="finishedGame">Spiel beendet. Deine Punktzahl: {{score}}</p>
   </div>
 
-</div>
+  <div class="game">
 
-<div *ngIf="finishedGame">
-  <p>Spiel beendet. Deine Punktzahl: {{score}}</p>
+    <div *ngFor="let mole of moles" class="moles">
+      <div (pointerdown)="countScore(mole)" class="mole">
+        <img class="showHill" [class.hiddenHill]="mole.visible && activeGame" src="assets/molehills.png"
+             alt="molehills">
+        <img class="mole-img" [class.visible]="mole.visible && activeGame" src="assets/mole.png" alt="mole">
+      </div>
+    </div>
+
+  </div>
+
 </div>
