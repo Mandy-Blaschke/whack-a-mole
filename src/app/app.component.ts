@@ -58,7 +58,6 @@ export class AppComponent implements OnInit {
   }
 
   private endGame(): void {
-    this.highscore = this.score;
     this.saveHighscore();
     this.everPlayed = true;
     this.moles.forEach((mole) => mole.visible = false);
@@ -139,7 +138,10 @@ export class AppComponent implements OnInit {
   }
 
   saveHighscore(): void {
-    localStorage.setItem('Highscore', JSON.stringify(this.highscore));
+    if (this.score > this.highscore) {
+      this.highscore = this.score;
+      localStorage.setItem('Highscore', JSON.stringify(this.highscore));
+    }
   }
 
   loadHighscore(): void {
