@@ -9,7 +9,13 @@ export class AppComponent implements OnInit {
 
   activeGame = false;
   finishedGame = false;
+  firstThird = false;
+  secondThird = false;
+  lastThird = false;
+  everPlayed = false;
+  highscore = 0;
   playDuration = 90000;
+  score = 0;
 
   moles: Mole[] = [
     {visible: false}, {visible: false}, {visible: false},
@@ -17,14 +23,9 @@ export class AppComponent implements OnInit {
     {visible: false}, {visible: false}, {visible: false},
   ];
 
-  score = 0;
-
-  firstThird = false;
-  secondThird = false;
-  lastThird = false;
-
 
   ngOnInit(): void {
+    this.loadHighscore();
     this.preLoadAudios();
   }
 
@@ -57,6 +58,9 @@ export class AppComponent implements OnInit {
   }
 
   private endGame(): void {
+    this.highscore = this.score;
+    this.saveHighscore();
+    this.everPlayed = true;
     this.moles.forEach((mole) => mole.visible = false);
     this.activeGame = false;
     this.finishedGame = true;
@@ -80,7 +84,6 @@ export class AppComponent implements OnInit {
     }, 2300);
     this.playingGame();
   }
-
 
   countScore(mole: Mole): void {
     if (this.activeGame && mole.visible && this.firstThird) {
@@ -111,7 +114,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  preLoadAudios(): void {
+  private preLoadAudios(): void {
     const audioA = new Audio();
     audioA.src = 'assets/smashing.mp3';
     audioA.load();
@@ -121,19 +124,31 @@ export class AppComponent implements OnInit {
     audioB.load();
   }
 
-
-  playAudioA(): void {
+  private playAudioA(): void {
     const audio = new Audio();
     audio.src = 'assets/smashing.mp3';
     audio.load();
     audio.play();
   }
 
-  playAudioB(): void {
+  private playAudioB(): void {
     const audio = new Audio();
     audio.src = 'assets/buzzer.mp3';
     audio.load();
     audio.play();
+  }
+
+  saveHighscore(): void {
+    localStorage.setItem('Highscore', JSON.stringify(this.highscore));
+  }
+
+  loadHighscore(): void {
+    const score = localStorage.getItem('Highscore');
+
+    if (score) {
+      this.highscore = JSON.parse(score);
+      this.everPlayed = true;
+    }
   }
 }
 
